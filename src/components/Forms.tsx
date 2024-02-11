@@ -9,14 +9,13 @@ import {Task, ITasks } from './Tasks';
 
 export function Form()
 {
-    const [Tasks, setTasks] = useState<ITasks[]>([]);;
+    const [Tasks, setTasks] = useState<ITasks[]>([]);
     const [newtTask, setNewTask] = useState('');
     
     const totalTasks     = Tasks.length;
     const completedTasks = Tasks.reduce((count, task) => {
         return task.isConcluded ? count +1 : count;
     }, 0);
-    const isTaskEmpty = newtTask.length === 0;
 
     function handleNewTask(event : FormEvent){
         event.preventDefault()
@@ -109,8 +108,8 @@ export function Form()
                                 <Task
                                 key={task.id}
                                 task={task}
-                                toggleTaskStatus={toggleTask} 
                                 deleteTask={deleteTask}
+                                toggleTaskStatus={toggleTask} 
                                 totalTasks={totalTasks}
                                 completedTasks={completedTasks}
                                 />

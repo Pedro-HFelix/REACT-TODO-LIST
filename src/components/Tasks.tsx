@@ -15,8 +15,7 @@ interface TaskProps {
     completedTasks: number;
   }
 
-export function Task({task, toggleTaskStatus, deleteTask, totalTasks, completedTasks } : TaskProps){
-
+export function Task({task, deleteTask, toggleTaskStatus, totalTasks, completedTasks } : TaskProps){
     function handleTaskToggle() {
         toggleTaskStatus({ id: task.id, value: !task.isConcluded})
     }
@@ -29,8 +28,9 @@ export function Task({task, toggleTaskStatus, deleteTask, totalTasks, completedT
     const taskCompleted = task.isConcluded ? 'checked' : 'unchecked'
     
     return (
-        <div className={styles.lineTask} onClick={handleTaskToggle}>
-            <label onClick={handleTaskToggle}>
+        <div className={styles.lineTask}>
+            
+            <button onClick={handleTaskToggle}>
                 <input readOnly type="checkbox" checked={task.isConcluded} />
 
                 <span className={`${styles.taskCompleted} ${styles[taskCompleted]}`} >
@@ -41,7 +41,7 @@ export function Task({task, toggleTaskStatus, deleteTask, totalTasks, completedT
                     {task.content}
                 </p>
 
-            </label>
+            </button>
 
             <button onClick={handleRemove}>
                 <Trash size={16} color="#808080" />
